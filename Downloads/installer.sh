@@ -33,12 +33,12 @@ uname -m > $CHECK
 sleep 1;
 if grep -qs -i 'mips' cat $CHECK ; then
 	echo "[ Your device is MIPS ]"
-    if [ $PYTHON = "PY3" ]; then
+    if [ "$PYTHON" = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/mipsel/multistalker$VERSION-py3-mipsel.tar.gz -O /tmp/multistalker$VERSION-py3-mipsel.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-mipsel.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-mipsel.tar.gz
         
-        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ];then
+        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ]; then
             wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/mipsel/libpython3.7-mipsel.tar.gz -O /tmp/libpython3.7-mipsel.tar.gz
             tar -xzf /tmp/libpython3.7-mipsel.tar.gz -C /
             rm -f /tmp/libpython3.7-mipsel.tar.gz
@@ -53,12 +53,12 @@ if grep -qs -i 'mips' cat $CHECK ; then
     fi
 elif grep -qs -i 'armv7l' cat $CHECK ; then
 	echo "[ Your device is armv7l ]"
-    if [ $PYTHON = "PY3" ]; then
+    if [ "$PYTHON" = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/arm/multistalker$VERSION-py3-arm.tar.gz -O /tmp/multistalker$VERSION-py3-arm.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-arm.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-arm.tar.gz
         
-        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ];then
+        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ]; then
             wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/arm/libpython3.7-arm.tar.gz -O /tmp/libpython3.7-arm.tar.gz
             tar -xzf /tmp/libpython3.7-arm.tar.gz -C /
             rm -f /tmp/libpython3.7-arm.tar.gz
@@ -74,12 +74,12 @@ elif grep -qs -i 'armv7l' cat $CHECK ; then
 	
 elif grep -qs -i 'aarch64' cat $CHECK ; then
 	echo "[ Your device is aarch64 ]"
-    if [ $PYTHON = "PY3" ]; then
+    if [ "$PYTHON" = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/aarch64/multistalker$VERSION-py3-aarch64.tar.gz -O /tmp/multistalker$VERSION-py3-aarch64.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-aarch64.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-aarch64.tar.gz
         
-        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ];then
+        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ]; then
             wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/aarch64/libpython3.7-aarch64.tar.gz -O /tmp/libpython3.7-aarch64.tar.gz
             tar -xzf /tmp/libpython3.7-aarch64.tar.gz -C /
             rm -f /tmp/libpython3.7-aarch64.tar.gz
@@ -95,12 +95,12 @@ elif grep -qs -i 'aarch64' cat $CHECK ; then
 	
 elif grep -qs -i 'sh4' cat $CHECK ; then
 	echo "[ Your device is sh4 ]"
-	if [ $PYTHON = "PY3" ]; then
+	if [ "$PYTHON" = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/sh4/multistalker$VERSION-py3-sh4.tar.gz -O /tmp/multistalker$VERSION-py3-sh4.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-sh4.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-sh4.tar.gz
         
-        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ];then
+        if [ ! -f '/usr/lib/libpython3.7m.so.1.0' ]; then
             wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/sh4/libpython3.7-sh4.tar.gz -O /tmp/libpython3.7-sh4.tar.gz
             tar -xzf /tmp/libpython3.7-sh4.tar.gz -C /
             rm -f /tmp/libpython3.7-sh4.tar.gz
@@ -125,10 +125,10 @@ echo "#                    BY ziko-ZR1                        #"
 echo "#########################################################"
 echo "#                Restart Enigma2 GUI                    #"
 echo "#########################################################"
-sleep 2
-if [ $OS = 'DreamOS' ]; then 
-    systemctl restart enigma2
-else
-    killall -9 enigma2
-fi
+# sleep 2
+# if [ $OS = 'DreamOS' ]; then 
+#     systemctl restart enigma2
+# else
+#     killall -9 enigma2
+# fi
 exit 0
