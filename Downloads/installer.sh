@@ -13,6 +13,15 @@ elif [ -f /etc/opkg/opkg.conf ] ; then
    OS='Opensource'
 fi
 
+if python --version 2>&1 | grep -q '^Python 3\.'; then
+   echo "You have Python3 image"
+   PYTHON='PY3'
+   PYTHONPACK='python3-requests'
+else
+   echo "You have Python2 image"
+   PYTHON='PY2'
+   PYTHONPACK='python-requests'
+fi
 
 if [ -d $PLUGIN_PATH ]; then
 
@@ -20,20 +29,13 @@ if [ -d $PLUGIN_PATH ]; then
    
 fi
 
-if [ ! -f $STALKER_CONF ]; then
-
-   wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/stalker-conf.tar.gz -O /tmp/stalker-conf.tar.gz
-   tar -xzf /tmp/stalker-conf.tar.gz  -C /
-   rm -f /tmp/stalker-conf.tar.gz 
-    echo "Send $STALKER_CONF"
-fi
 
 CHECK='/tmp/check'
 uname -m > $CHECK
 sleep 1;
 if grep -qs -i 'mips' cat $CHECK ; then
 	echo "[ Your device is MIPS ]"
-    if [ "$PYTHON" = "PY3" ]; then
+    if [ $PYTHON = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/mipsel/multistalker$VERSION-py3-mipsel.tar.gz -O /tmp/multistalker$VERSION-py3-mipsel.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-mipsel.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-mipsel.tar.gz
@@ -53,7 +55,7 @@ if grep -qs -i 'mips' cat $CHECK ; then
     fi
 elif grep -qs -i 'armv7l' cat $CHECK ; then
 	echo "[ Your device is armv7l ]"
-    if [ "$PYTHON" = "PY3" ]; then
+    if [ $PYTHON = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/arm/multistalker$VERSION-py3-arm.tar.gz -O /tmp/multistalker$VERSION-py3-arm.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-arm.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-arm.tar.gz
@@ -74,7 +76,7 @@ elif grep -qs -i 'armv7l' cat $CHECK ; then
 	
 elif grep -qs -i 'aarch64' cat $CHECK ; then
 	echo "[ Your device is aarch64 ]"
-    if [ "$PYTHON" = "PY3" ]; then
+    if [ $PYTHON = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/aarch64/multistalker$VERSION-py3-aarch64.tar.gz -O /tmp/multistalker$VERSION-py3-aarch64.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-aarch64.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-aarch64.tar.gz
@@ -95,7 +97,7 @@ elif grep -qs -i 'aarch64' cat $CHECK ; then
 	
 elif grep -qs -i 'sh4' cat $CHECK ; then
 	echo "[ Your device is sh4 ]"
-	if [ "$PYTHON" = "PY3" ]; then
+	if [ $PYTHON = "PY3" ]; then
 	    wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/py3/sh4/multistalker$VERSION-py3-sh4.tar.gz -O /tmp/multistalker$VERSION-py3-sh4.tar.gz
         tar -xzf /tmp/multistalker$VERSION-py3-sh4.tar.gz -C /
         rm -f /tmp/multistalker$VERSION-py3-sh4.tar.gz
@@ -116,6 +118,14 @@ elif grep -qs -i 'sh4' cat $CHECK ; then
 else
     echo "Your device is not supported"
     exit 1
+fi
+
+if [ ! -f $STALKER_CONF ]; then
+
+   wget -q  "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/stalker-conf.tar.gz -O /tmp/stalker-conf.tar.gz
+   tar -xzf /tmp/stalker-conf.tar.gz  -C /
+   rm -f /tmp/stalker-conf.tar.gz 
+    echo "Send $STALKER_CONF"
 fi
 
 echo ""
