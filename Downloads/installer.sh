@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #wget -q "--no-check-certificate" https://raw.githubusercontent.com/ziko-ZR1/Multi-Stalker-install/main/Downloads/installer.sh -O - | /bin/sh
-VERSION=1.2
+VERSION=1.3
 PLUGIN_PATH='/usr/lib/enigma2/python/Plugins/Extensions/MultiStalker'
 STALKER_CONF='/home/stalker.conf'
 
